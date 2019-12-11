@@ -4,60 +4,86 @@
 <head>
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css" />
-  <title>Store Management</title>
+  <title>Prompt Generator | Add Words</title>
 </head>
 
 <body>
   <div class="header">
     <div class="title">
-      <h2>Definitely Not Amazon</h2>
-      <p>(Please don't sue me)</p>
+      <h2>Story Prompt Generator</h2>
+      <a href="">Add Words</a>
+      <span> | </span>
+      <a href="index.html">Prompt Generator</a>
+      <span> | </span>
+      <a href="https://github.com/BYUCS260/midterm-2-rakudola">Github Repository</a>
     </div>
   </div>
   
   <div id="admin" class="content">
-    <h1>Store Management</h1>
+    <h1>Word Bank Management</h1>
+    <p>Remember God is watching ☺</p>
     <div class="heading">
-      <!--<div class="circle">1</div>-->
-      <h2>Add a Product</h2>
+      <h2>Add a Word</h2>
     </div>
 
     <div class="add">
       <div class="form">
-        <input v-model="title" placeholder="Product Name">
+        <input v-model="nounTitle" placeholder="Noun">
+        <button @click="addNoun">Add</button>
+        <p id="nounForm">Singular nouns</p>
         <br />
-        <p></p>
-        <input v-model="price" placeholder="Price">
-        <p></p>
-        <input v-model="url" placeholder="Picture URL">
-        <p></p>
-        <button @click="upload">Upload</button>
       </div>
-      <div class="upload" v-if="addProduct">
-        <h2>{{addProduct.title}}</h2>
-        <img :src="addProduct.url" />
-        <p>{{addProduct.price}}</p>
+      
+      <div class="form">
+        <input v-model="adjTitle" placeholder="Adjective">
+        <button @click="addAdj">Add</button>
+        <p id="adjForm">Any adjectives</p>
+        <br />
+      </div>
+      
+      <div class="form">
+        <input v-model="verbTitle" placeholder="Verb">
+        <button @click="addVerb">Add</button>
+        <p id="verbForm">Transitive, past-tense verbs</p>
+        <br />
       </div>
     </div>
 
     <div class="heading">
-      <h2>Current Products</h2>
+      <h2>Nouns</h2>
     </div>
     
-    <div v-for="product in sortedArray">
-      <img :src="product.url" />
-      <br />{{product.title}} - ${{product.price}} - {{product.ordered}} unit(s) ordered
+    <div class="word-list" v-for="noun in nouns">
+      <button class="x-button" @click="deleteNoun(noun)">X</button>
+      <span>{{noun.title}} </span>
+    </div>
+    
+    <div class="heading">
+      <h2>Adjectives</h2>
+    </div>
+    
+    <div class="word-list" v-for="adj in adjs">
+      <button class="x-button" @click="deleteAdj(adj)">X</button>
+      <span>{{adj.title}} </span>
       <br />
-      <button class="x-button" @click="deleteProduct(product)">Delete</button>
-      <hr />
+    </div>
+    
+    <div class="heading">
+      <h2>Verbs</h2>
+    </div>
+    
+    <div class="word-list" v-for="verb in verbs">
+      <button class="x-button" @click="deleteVerb(verb)">X</button>
+      <span>{{verb.title}} </span>
+      <br />
     </div>
     
   </div>
 
   <div class="footer">
-    <a href="">Admin</a>
+    <a href="">Add Words</a>
     <span> | </span>
-    <a href="index.html">Customer Page</a>
+    <a href="index.html">Prompt Generator</a>
     <span> | </span>
     <a href="https://github.com/BYUCS260/midterm-2-rakudola">Github Repository</a>
   </div>
